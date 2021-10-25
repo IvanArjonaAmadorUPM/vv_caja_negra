@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch PruebaSanti",
+            "request": "launch",
+            "mainClass": "com.practica.cajanegra.PruebaSanti",
+            "projectName": "CajaNegra"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
