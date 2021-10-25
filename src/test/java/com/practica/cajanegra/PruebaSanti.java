@@ -16,7 +16,7 @@ public class PruebaSanti {
     
     
     public static void main(String[] args){
-        System.out.println("pruebas de Santiago");
+        System.out.println("pruebas de Santiago e igor");
 
 	}
 
