@@ -16,7 +16,7 @@ public class PruebaSanti {
     
     
     public static void main(String[] args){
-        System.out.println("pruebas de Santiago, igor y Jaime");
+        System.out.println("pruebas de Santiago, igor y Jaime funciona?");
 
 	}
 
@@ -34,7 +34,8 @@ public class PruebaSanti {
 	    public void addFirst(String s) {
 		    this.miLista.addFirst(s);
 		    assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
-
+        
+        
 
     }
 }
