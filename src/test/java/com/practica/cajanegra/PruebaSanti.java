@@ -20,8 +20,10 @@ public class PruebaSanti {
 
 	}
 
+
     private SingleLinkedListImpl<String> miLista;  
-    
+
+        //addFirst
         @BeforeEach
 	    public void setUp() {
 		    this.miLista = new SingleLinkedListImpl<String>("A","B","C");
@@ -34,8 +36,18 @@ public class PruebaSanti {
 	    public void addFirst(String s) {
 		    this.miLista.addFirst(s);
 		    assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
-        
-        
 
-    }
+        }
+
+        //addLast
+        @ParameterizedTest(name="Add Last {0} in list")
+        @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
+
+        @Test
+        public void addLast(String s){
+            this.miLista.addLast(s);
+            assertEquals("[A, B, C, M, Y, Z, " + s + "]", this.miLista.toString());
+        }
+        //
+
 }

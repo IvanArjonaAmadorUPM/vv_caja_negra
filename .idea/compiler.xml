@@ -6,11 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
+        <module name="Practica" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Practica" target="1.8" />
+=======
         <module name="CajaNegra" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CajaNegra" target="1.8" />
+>>>>>>> d08513c84277f21734351dece0153415f5f68369
     </bytecodeTargetLevel>
   </component>
 </project>
