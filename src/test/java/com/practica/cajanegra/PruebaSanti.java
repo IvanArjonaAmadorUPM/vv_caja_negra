@@ -3,6 +3,7 @@ package com.practica.cajanegra;
 import com.cajanegra.SingleLinkedListImpl;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.notification.RunListener.ThreadSafe;
 
@@ -48,6 +49,19 @@ public class PruebaSanti {
             this.miLista.addLast(s);
             assertEquals("[A, B, C, M, Y, Z, " + s + "]", this.miLista.toString());
         }
+
+
+        // test ejemplo Iván
+        @DisplayName("testAddAtPos")
+        @Test
+
+        public void test_addAtPos(){
+            this.miLista.addAtPos("Z",1);
+            assertEquals("[Z,A,B,C]", this.miLista.toString());
+        }
         //
+
+
+
 
 }
