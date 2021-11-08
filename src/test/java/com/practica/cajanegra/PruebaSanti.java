@@ -3,6 +3,7 @@ package com.practica.cajanegra;
 import com.cajanegra.SingleLinkedListImpl;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.notification.RunListener.ThreadSafe;
 
@@ -48,6 +49,26 @@ public class PruebaSanti {
             this.miLista.addLast(s);
             assertEquals("[A, B, C, M, Y, Z, " + s + "]", this.miLista.toString());
         }
-        //
+
+    @DisplayName("Debe comprobar si esta vacio")
+    @ParameterizedTest(name="Add Last {0} in list")
+    @ValueSource(strings= {"A"})
+
+    @Test
+    public void isEmptyTest(){
+        this.miLista = new SingleLinkedListImpl<>();
+        assertEquals(true, this.miLista.isEmpty());
+    }
+
+    @Test
+    public void isEmptyTest(String s){
+        this.miLista = new SingleLinkedListImpl<>(s);
+        assertEquals(false, this.miLista.isEmpty());
+    }
+
+
+
+
+
 
 }
