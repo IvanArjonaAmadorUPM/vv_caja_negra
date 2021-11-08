@@ -71,4 +71,18 @@ public class PruebaSanti {
 
 
 
+        // test ejemplo Iván
+        @DisplayName("testAddAtPos")
+        @Test
+
+        public void test_addAtPos(){
+            this.miLista.addAtPos("Z",1);
+            assertEquals("[Z,A,B,C]", this.miLista.toString());
+        }
+        //
+
+
+
+
+
 }
