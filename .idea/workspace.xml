@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="530fe73f-1072-4aa9-aa9e-fafa51539dde" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/src/test/java/com/BlackBoxTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/practica/cajanegra/PruebaSanti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/practica/cajanegra/PruebaSanti.java" afterDir="false" />
+    </list>
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+>>>>>>> bbf6450a3ab4446ba7b4cd0de874076304f38cd0
       <change beforePath="$PROJECT_DIR$/src/test/java/com/practica/cajanegra/PruebaSanti.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/practica/cajanegra/PruebaSanti.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+>>>>>>> 29a6c927c7e1195dba174aebfba6dd0f4757af5c
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FavoritesManager">
     <favorites_list name="CajaNegra" />
   </component>
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> bbf6450a3ab4446ba7b4cd0de874076304f38cd0
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
@@ -71,6 +89,7 @@
       </file>
     </leaf>
   </component>
+>>>>>>> 29a6c927c7e1195dba174aebfba6dd0f4757af5c
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -95,13 +114,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/practica/cajanegra/PruebaSanti.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/BlackBoxTest.java" />
       </list>
-    </option>
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
     </option>
   </component>
   <component name="MavenProjectNavigator">
@@ -213,6 +225,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
+<<<<<<< HEAD
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -226,15 +239,30 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.BlackBoxTest">
+=======
+  <component name="RunManager" selected="Application.PruebaSanti">
+>>>>>>> bbf6450a3ab4446ba7b4cd0de874076304f38cd0
     <configuration name="PruebaSanti" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.practica.cajanegra.PruebaSanti" />
-      <module name="Practica" />
+      <module name="CajaNegra" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../.." />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.practica.cajanegra.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.practica.cajanegra.PruebaSanti" />
+      <module name="CajaNegra" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -247,21 +275,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="BlackBoxTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Practica" />
+=======
+    <configuration name="PruebaSanti" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CajaNegra" />
+>>>>>>> bbf6450a3ab4446ba7b4cd0de874076304f38cd0
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.practica.cajanegra.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+<<<<<<< HEAD
       <option name="PACKAGE_NAME" value="com.practica.cajanegra" />
       <option name="MAIN_CLASS_NAME" value="com.practica.cajanegra.BlackBoxTest" />
+=======
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="PACKAGE_NAME" value="com.practica.cajanegra" />
+      <option name="MAIN_CLASS_NAME" value="com.practica.cajanegra.PruebaSanti" />
+      <option name="METHOD_NAME" value="" />
+>>>>>>> bbf6450a3ab4446ba7b4cd0de874076304f38cd0
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
     <configuration name="BlackBoxTest.test_addAtPos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Practica" />
       <extension name="coverage">
@@ -274,6 +316,16 @@
       <option name="MAIN_CLASS_NAME" value="com.practica.cajanegra.BlackBoxTest" />
       <option name="METHOD_NAME" value="test_addAtPos" />
       <option name="TEST_OBJECT" value="method" />
+=======
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <module name="CajaNegra" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="PACKAGE_NAME" value="com.practica.cajanegra" />
+      <option name="MAIN_CLASS_NAME" value="com.practica.cajanegra.PruebaSanti" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+>>>>>>> bbf6450a3ab4446ba7b4cd0de874076304f38cd0
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -341,13 +393,19 @@
     <list>
       <item itemvalue="Application.PruebaSanti" />
       <item itemvalue="JUnit.All in Practica" />
+      <item itemvalue="JUnit.PruebaSanti" />
       <item itemvalue="Maven.CajaNegra [install:install-file...]" />
       <item itemvalue="JUnit.BlackBoxTest" />
       <item itemvalue="JUnit.BlackBoxTest.test_addAtPos" />
     </list>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="JUnit.BlackBoxTest" />
+=======
+        <item itemvalue="Application.PruebaSanti" />
+        <item itemvalue="JUnit.PruebaSanti" />
+>>>>>>> bbf6450a3ab4446ba7b4cd0de874076304f38cd0
         <item itemvalue="JUnit.All in Practica" />
         <item itemvalue="JUnit.BlackBoxTest.test_addAtPos" />
         <item itemvalue="Application.PruebaSanti" />
@@ -467,22 +525,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -501,6 +544,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test primer main" />

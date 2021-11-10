@@ -5,6 +5,7 @@ import com.cajanegra.SingleLinkedListImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.runner.notification.RunListener.ThreadSafe;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -51,17 +52,41 @@ public class PruebaSanti {
             assertEquals("[A, B, C, M, Y, Z, " + s + "]", this.miLista.toString());
         }
 
+    @DisplayName("Debe comprobar si esta vacio")
+    @ParameterizedTest(name="Add Last {0} in list")
+    @ValueSource(strings= {"A"})
 
-        // test ejemplo Iván
-        @DisplayName("testAddAtPos")
-        @Test
+    @Test
+    public void isEmptyTest(){
+        this.miLista = new SingleLinkedListImpl<>();
+        assertEquals(true, this.miLista.isEmpty());
+    }
 
-        public void test_addAtPos(){
-            this.miLista.addAtPos("Z",1);
-            System.out.println(this.miLista.toString());
-            assertEquals("[Z,A,B,C]", this.miLista.toString());
-        }
+    @Test
+    public void isEmptyTest(String s){
+        this.miLista = new SingleLinkedListImpl<>(s);
+        assertEquals(false, this.miLista.isEmpty());
+    }
+
+
+
+
+
+
+    // test ejemplo Iván
+    //@DisplayName("testAddAtPos")
+    @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}, Esperado={2}")
+    @CsvSource(value = {
+            "A:3:[A, B, A, C]",
+            "Z:1:[Z, A, B, C]",
+    },
+            delimiter = ':')
+    public void test_addAtPos(String letra, int posicion, String esperado){
+        this.miLista.addAtPos(letra,posicion);
+        assertEquals(esperado, this.miLista.toString());
+    }
         //
+
 
 
 
