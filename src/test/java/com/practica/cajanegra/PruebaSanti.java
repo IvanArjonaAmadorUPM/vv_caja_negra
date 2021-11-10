@@ -24,31 +24,41 @@ public class PruebaSanti {
 
     private SingleLinkedListImpl<String> miLista;  
 
-        //addFirst
-        @BeforeEach
-	    public void setUp() {
-		    this.miLista = new SingleLinkedListImpl<String>("A","B","C");
-	    }
+    //addFirst
+    @BeforeEach
+	public void setUp() {
+		this.miLista = new SingleLinkedListImpl<String>("A","B","C");
+	}
         
-        @ParameterizedTest(name="Add First {0} in list")
-        @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
+    
+    @ParameterizedTest(name="Add First {0} in list")
+    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
 
-        @Test
-	    public void addFirst(String s) {
-		    this.miLista.addFirst(s);
-		    assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
+    @Test
+	public void addFirst(String s) {
+	    this.miLista.addFirst(s);
+    		assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
+    }    
 
-        }
+    //addLast
+    @ParameterizedTest(name="Add Last {0} in list")
+    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
 
-        //addLast
-        @ParameterizedTest(name="Add Last {0} in list")
-        @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
+    @Test       
+    public void addLast(String s){  
+        this.miLista.addLast(s);
+        assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
+    }        
 
-        @Test
-        public void addLast(String s){
-            this.miLista.addLast(s);
-            assertEquals("[A, B, C, M, Y, Z, " + s + "]", this.miLista.toString());
-        }
+    //getAtPos
+    int num = miLista.size();
+    @Test
+    //@ValueSource(ints = {1,2, num})
+    public void getAtPos(int pos){
+        //this.miLista.getAtPos(3);
+        assertEquals("C", this.miLista.getAtPos(3));
+    }
+
 
     @DisplayName("Debe comprobar si esta vacio")
     @ParameterizedTest(name="Add Last {0} in list")
@@ -67,17 +77,13 @@ public class PruebaSanti {
     }
 
 
-
-
-
-
         // test ejemplo Iván
         @DisplayName("testAddAtPos")
         @Test
 
         public void test_addAtPos(){
             this.miLista.addAtPos("Z",1);
-            assertEquals("[Z,A,B,C]", this.miLista.toString());
+            assertEquals("[Z, A, B, C]", this.miLista.toString());
         }
         //
 
