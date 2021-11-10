@@ -5,6 +5,7 @@ import com.cajanegra.SingleLinkedListImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.runner.notification.RunListener.ThreadSafe;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,6 +19,7 @@ public class PruebaSanti {
     
     public static void main(String[] args){
         System.out.println("pruebas de Santiago, igor y Jaime funciona?");
+
 
 	}
 
@@ -77,14 +79,20 @@ public class PruebaSanti {
     }
 
 
-        // test ejemplo Iván
-        @DisplayName("testAddAtPos")
-        @Test
 
-        public void test_addAtPos(){
-            this.miLista.addAtPos("Z",1);
-            assertEquals("[Z, A, B, C]", this.miLista.toString());
-        }
+
+    // test ejemplo Iván
+    //@DisplayName("testAddAtPos")
+    @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}, Esperado={2}")
+    @CsvSource(value = {
+            "A:3:[A, B, A, C]",
+            "Z:1:[Z, A, B, C]",
+    },
+            delimiter = ':')
+    public void test_addAtPos(String letra, int posicion, String esperado){
+        this.miLista.addAtPos(letra,posicion);
+        assertEquals(esperado, this.miLista.toString());
+    }
         //
 
 
