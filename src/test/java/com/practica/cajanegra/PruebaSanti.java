@@ -19,6 +19,7 @@ public class PruebaSanti {
     public static void main(String[] args){
         System.out.println("pruebas de Santiago, igor y Jaime funciona?");
 
+
 	}
 
 
@@ -57,6 +58,7 @@ public class PruebaSanti {
 
         public void test_addAtPos(){
             this.miLista.addAtPos("Z",1);
+            System.out.println(this.miLista.toString());
             assertEquals("[Z,A,B,C]", this.miLista.toString());
         }
         //
