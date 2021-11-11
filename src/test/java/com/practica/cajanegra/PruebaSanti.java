@@ -33,10 +33,9 @@ public class PruebaSanti {
 		this.miLista = new SingleLinkedListImpl<String>("A","B","C");
 	}
         
-    
+    @DisplayName("testAddFirst")
     @ParameterizedTest(name="Add First {0} in list")
     @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
-    @Test
 	public void test_addFirst(String s) {
 	    this.miLista.addFirst(s);
     		assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
@@ -44,23 +43,13 @@ public class PruebaSanti {
 
     //addLast
     @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
-
-    @Test       
+    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})      
     public void addLast(String s){  
         this.miLista.addLast(s);
         assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
     }        
 
     //getAtPos
-    @Test
-    @ValueSource(ints = {1,2,4,6,7,0,8})
-    public void getAtPos(int pos){
-        this.miLista = new SingleLinkedListImpl<String>("A","B","C","D","E","F","G");
-        assertEquals("", this.miLista.getAtPos(pos));
-    }
-
-    @Test
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
             "A:1",
@@ -75,7 +64,6 @@ public class PruebaSanti {
         assertEquals(letra, this.miLista.getAtPos(posicion));
     }
 
-    @Test
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
             "A:1",
@@ -90,7 +78,7 @@ public class PruebaSanti {
         assertEquals(posicion, this.miLista.indexOf(letra));
     }
 
-    @Test
+    
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
             "A:1",
@@ -100,7 +88,7 @@ public class PruebaSanti {
             "Z:5"
     },
             delimiter = ':')
-
+            
     public void test_indexOfMalos(String letra, int posicion){
         this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
         assertThrowsException();
