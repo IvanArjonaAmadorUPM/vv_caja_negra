@@ -134,19 +134,49 @@ public class PruebaSanti {
 
 
 
-    // test ejemplo Iván
+    // tests Iván
     @DisplayName("testAddAtPos")
-    @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}, Esperado={2}")
+    @ParameterizedTest(name = "{index} => S={0}, P={1}, Esperado={2}")
     @CsvSource(value = {
-            "A:3:[A, B, A, C]",
-            "B:2:[A, B, B, C]",
-            "M:8:[A, B, C, M]",
-            "Y:8:[A, B, C, Y]",
-            "Z:1:[Z, A, B, C]"
+            //A
+            "A:1:[A, A, B, C, D, E]",
+            "A:2:[A, A, B, C, D, E]",
+            "A:3:[A, B, A, C, D, E]",
+            "A:4:[A, B, C, A, D, E]",
+            "A:5:[A, B, C, D, A, E]",
+            "A:6:[A, B, C, D, E, A]",
+            //B
+            "B:1:[B, A, B, C, D, E]",
+            "B:2:[A, B, B, C, D, E]",
+            "B:3:[A, B, B, C, D, E]",
+            "B:4:[A, B, C, B, D, E]",
+            "B:5:[A, B, C, D, B, E]",
+            "B:6:[A, B, C, D, E, B]",
+            //M
+            "M:1:[M, A, B, C, D, E]",
+            "M:2:[A, M, B, C, D, E]",
+            "M:3:[A, B, M, C, D, E]",
+            "M:4:[A, B, C, M, D, E]",
+            "M:5:[A, B, C, D, M, E]",
+            "M:6:[A, B, C, D, E, M]",
+            //Y
+            "Y:1:[Y, A, B, C, D, E]",
+            "Y:2:[A, Y, B, C, D, E]",
+            "Y:3:[A, B, Y, C, D, E]",
+            "Y:4:[A, B, C, Y, D, E]",
+            "Y:5:[A, B, C, D, Y, E]",
+            "Y:6:[A, B, C, D, E, Y]",
+            //Z
+            "Z:1:[Z, A, B, C, D, E]",
+            "Z:2:[A, Z, B, C, D, E]",
+            "Z:3:[A, B, Z, C, D, E]",
+            "Z:4:[A, B, C, Z, D, E]",
+            "Z:5:[A, B, C, D, Z, E]",
+            "Z:6:[A, B, C, D, E, Z]",
     },
             delimiter = ':')
-    public void test_addAtPos(String letra, int posicion, String esperado){
-        this.miLista = new SingleLinkedListImpl<String>("A","B","C","D");
+    public void test_addAtPosValido(String letra, int posicion, String esperado){
+        this.miLista = new SingleLinkedListImpl<>("A","B","C","D","E");
         this.miLista.addAtPos(letra,posicion);
         assertEquals(esperado, this.miLista.toString());
     }
