@@ -1,5 +1,6 @@
 package com.practica.cajanegra;
 
+import com.cajanegra.EmptyCollectionException;
 import com.cajanegra.SingleLinkedListImpl;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,11 +44,12 @@ public class PruebaSanti {
     }    
 
     //addLast
+    @DisplayName("test addLast")
     @ParameterizedTest(name="Add Last {0} in list")
     @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
 
     @Test       
-    public void addLast(String s){  
+    public void test_addLast(String s){
         this.miLista.addLast(s);
         assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
     }        
@@ -60,6 +62,23 @@ public class PruebaSanti {
         assertEquals("C", this.miLista.getAtPos(3));
     }
 
+    //removelast
+    @DisplayName("test removeLast")
+    //@ParameterizedTest(name = "remove Last {0} in list")
+    //@ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
+
+    @Test
+    public void test_removeLast(String s) throws EmptyCollectionException {
+        this.miLista = new SingleLinkedListImpl<String>("A","B","C","C","D","A");
+        /*this.miLista.removeLast(s);
+        assertEquals( "[A, B, C, C, D, A", -s-"]",this.miLista.toString());*/
+        this.miLista.removeLast("A");
+        assertEquals("[A, B, C, C, D]", this.miLista.toString());
+        this.miLista.removeLast("B");
+        assertEquals("[A, C, C, D, A]", this.miLista.toString());
+        this.miLista.removeLast("M");
+        assertEquals("[A, B, C, C, D, A]", this.miLista.toString());
+    }
 
     @DisplayName("Debe comprobar si esta vacio")
     @ParameterizedTest(name="Add Last {0} in list")
