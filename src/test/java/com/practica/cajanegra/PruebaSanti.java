@@ -129,22 +129,9 @@ public class PruebaSanti {
     // test ejemplo Iván
 
     // tests Iván
-<<<<<<< HEAD
     @DisplayName("testAddAtPosValida")
-=======
-
-    @DisplayName("testAddAtPos")
->>>>>>> 37ebefa1eb6ebdc613d30540f884fa50efdc3795
     @ParameterizedTest(name = "{index} => S={0}, P={1}, Esperado={2}")
     @CsvSource(value = {
-            //@ java.lang.IllegalArgumentException
-            "@:1:[@, A, B, C, D, E]",
-            "@:2:[A, @, B, C, D, E]",
-            "@:3:[A, B, @, C, D, E]",
-            "@:4:[A, B, C, @, D, E]",
-            "@:5:[A, B, C, D, @, E]",
-            "@:6:[A, B, C, D, E, @]",
-
             //A
             "A:1:[A, A, B, C, D, E]",
             "A:2:[A, A, B, C, D, E]",
@@ -188,8 +175,44 @@ public class PruebaSanti {
         assertEquals(esperado, this.miLista.toString());
     }
 
+    @DisplayName("testAddAtPosNoValida")
+    @ParameterizedTest(name = "{index} => S={0}, P={1}, Esperado={2}")
+    @CsvSource(value = {
+            //@
+            "@:1:",
+            "@:2:",
+            "@:3:",
+            "@:4:",
+            "@:5:",
+            "@:6",
+            //[
+            "[:1:",
+            "[:2:",
+            "[:3:",
+            "[:4:",
+            "[:5:",
+            "[:6",
+            //@
+            "A:0:",
+            "B:0:",
+            "M:0:",
+            "Y:0:",
+            "Z:0:",
+            "@:0",
+            "[:0"
 
-        //
+            },
+                delimiter = ':')
+    void test_addAtPosNoValido(String letra, int posicion) {
+        this.miLista = new SingleLinkedListImpl<>("A","B","C","D","E");
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.addAtPos(letra,posicion);
+        });
+    }
+
+
+
+    //
 
 
 
