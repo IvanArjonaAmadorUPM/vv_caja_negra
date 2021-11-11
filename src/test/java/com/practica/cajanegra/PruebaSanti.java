@@ -81,9 +81,17 @@ public class PruebaSanti {
 
 
     // tests Iván
-    @DisplayName("testAddAtPos")
+    @DisplayName("testAddAtPosValida")
     @ParameterizedTest(name = "{index} => S={0}, P={1}, Esperado={2}")
     @CsvSource(value = {
+            //@ java.lang.IllegalArgumentException
+            "@:1:[@, A, B, C, D, E]",
+            "@:2:[A, @, B, C, D, E]",
+            "@:3:[A, B, @, C, D, E]",
+            "@:4:[A, B, C, @, D, E]",
+            "@:5:[A, B, C, D, @, E]",
+            "@:6:[A, B, C, D, E, @]",
+
             //A
             "A:1:[A, A, B, C, D, E]",
             "A:2:[A, A, B, C, D, E]",
@@ -126,6 +134,8 @@ public class PruebaSanti {
         this.miLista.addAtPos(letra,posicion);
         assertEquals(esperado, this.miLista.toString());
     }
+
+
         //
 
 
