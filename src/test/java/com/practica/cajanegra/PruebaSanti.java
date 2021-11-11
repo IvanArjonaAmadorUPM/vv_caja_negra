@@ -1,17 +1,17 @@
 package com.practica.cajanegra;
 
 import com.cajanegra.SingleLinkedListImpl;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.runner.notification.RunListener.ThreadSafe;
-
 import org.junit.jupiter.params.ParameterizedTest;
-
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PruebaSanti {
@@ -32,56 +32,109 @@ public class PruebaSanti {
 		this.miLista = new SingleLinkedListImpl<String>("A","B","C");
 	}
         
-    
+    @DisplayName("testAddFirst")
     @ParameterizedTest(name="Add First {0} in list")
     @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
-
-    @Test
-	public void addFirst(String s) {
+	public void test_addFirst(String s) {
 	    this.miLista.addFirst(s);
     		assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
     }    
 
     //addLast
     @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
-
-    @Test       
+    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})      
     public void addLast(String s){  
         this.miLista.addLast(s);
         assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
     }        
 
     //getAtPos
-    @Test
-    //@ValueSource(ints = {1,2, num})
-    public void getAtPos(int pos){
-        //this.miLista.getAtPos(3);
-        assertEquals("C", this.miLista.getAtPos(3));
+    @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
+    @CsvSource(value = {
+            "A:1",
+            "B:2",
+            "M:3",
+            "Y:4",
+            "Z:5"
+    },
+            delimiter = ':')
+    public void test_getAtPos(String letra, int posicion){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
+        assertEquals(letra, this.miLista.getAtPos(posicion));
     }
 
 
-    @DisplayName("Debe comprobar si esta vacio")
-    @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"A"})
+    @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
+    @CsvSource(value = {
+                "A:1",
+                "B:2",
+                "M:3",
+                "Y:4",
+                "Z:5"
+        },
+                delimiter = ':')
+    public void test_indexOf(String letra, int posicion){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
+        assertEquals(posicion, this.miLista.indexOf(letra));
+    }
 
-    @Test
-    public void isEmptyTest(){
-        this.miLista = new SingleLinkedListImpl<>();
+    
+    @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
+    @CsvSource(value = {
+            "A:1",
+            "B:2",
+            "M:3",
+            "Y:4",
+            "Z:5"
+    },
+            delimiter = ':')
+            
+    public void test_indexOfMalos(String letra, int posicion){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
+        assertThrowsException();
+    }
+
+    void assertThrowsException() {
+        String str = null;
+        assertThrows(IllegalArgumentException.class, () -> {
+          Integer.valueOf(str);
+        });
+    }
+    //test isEmpty
+    @DisplayName("Debe comprobar que si esta vacio")
+    @ParameterizedTest(name = "{index} => vacio={0}")
+    @EmptySource
+    @NullSource
+    @ValueSource(strings = {""})
+    public void test_isEmpty1(String s) {
+        this.miLista = new SingleLinkedListImpl<>(s);
         assertEquals(true, this.miLista.isEmpty());
     }
 
-    @Test
-    public void isEmptyTest(String s){
+    @DisplayName("Debe comprobar que no esta vacio")
+    @ParameterizedTest(name = "{index} => Lista={0}, Esperado={1}")
+    @CsvSource(value = {
+            "A:false",
+            "[A,B]:false",
+                        }, delimiter = ':')
+
+    public void test_isEmpty(String s, boolean esperado){
         this.miLista = new SingleLinkedListImpl<>(s);
-        assertEquals(false, this.miLista.isEmpty());
+        assertEquals(esperado, this.miLista.isEmpty());
     }
 
 
 
 
+    // test ejemplo Iván
+
     // tests Iván
+<<<<<<< HEAD
     @DisplayName("testAddAtPosValida")
+=======
+
+    @DisplayName("testAddAtPos")
+>>>>>>> 37ebefa1eb6ebdc613d30540f884fa50efdc3795
     @ParameterizedTest(name = "{index} => S={0}, P={1}, Esperado={2}")
     @CsvSource(value = {
             //@ java.lang.IllegalArgumentException
