@@ -53,7 +53,6 @@ public class PruebaSanti {
     }        
 
     //getAtPos
-    int num = miLista.size();
     @Test
     //@ValueSource(ints = {1,2, num})
     public void getAtPos(int pos){
@@ -82,14 +81,18 @@ public class PruebaSanti {
 
 
     // test ejemplo Iván
-    //@DisplayName("testAddAtPos")
+    @DisplayName("testAddAtPos")
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}, Esperado={2}")
     @CsvSource(value = {
             "A:3:[A, B, A, C]",
-            "Z:1:[Z, A, B, C]",
+            "B:2:[A, B, B, C]",
+            "M:8:[A, B, C, M]",
+            "Y:8:[A, B, C, Y]",
+            "Z:1:[Z, A, B, C]"
     },
             delimiter = ':')
     public void test_addAtPos(String letra, int posicion, String esperado){
+        this.miLista = new SingleLinkedListImpl<String>("A","B","C","D");
         this.miLista.addAtPos(letra,posicion);
         assertEquals(esperado, this.miLista.toString());
     }

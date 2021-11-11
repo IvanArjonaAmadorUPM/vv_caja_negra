@@ -37,7 +37,7 @@ public class BlackBoxTest {
     @Test
     public void addLast(String s){
         this.miLista.addLast(s);
-        assertEquals("[A, B, C, M, Y, Z, " + s + "]", this.miLista.toString());
+        assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
     }
 
 
