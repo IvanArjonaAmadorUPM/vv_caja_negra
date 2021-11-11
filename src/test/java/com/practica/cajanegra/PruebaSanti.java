@@ -1,17 +1,15 @@
 package com.practica.cajanegra;
 
 import com.cajanegra.SingleLinkedListImpl;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.runner.notification.RunListener.ThreadSafe;
-
 import org.junit.jupiter.params.ParameterizedTest;
-
 import org.junit.jupiter.params.provider.ValueSource;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PruebaSanti {
@@ -60,22 +58,28 @@ public class PruebaSanti {
         assertEquals("C", this.miLista.getAtPos(3));
     }
 
-
-    @DisplayName("Debe comprobar si esta vacio")
-    @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"A"})
-
-    @Test
-    public void isEmptyTest(){
-        this.miLista = new SingleLinkedListImpl<>();
+    //test isEmpty
+    @DisplayName("Debe comprobar que si esta vacio")
+    @ParameterizedTest(name = "{index} => vacio={0}")
+    @EmptySource
+    @NullSource
+    @ValueSource(strings = {""})
+    public void test_isEmpty1(String s){
+        this.miLista = new SingleLinkedListImpl<>(s);
         assertEquals(true, this.miLista.isEmpty());
     }
+    @DisplayName("Debe comprobar que no esta vacio")
+    @ParameterizedTest(name = "{index} => Lista={0}, Esperado={1}")
+    @CsvSource(value = {
+            "A:false",
+            "[A,B]:false",
+                        }, delimiter = ':')
 
-    @Test
-    public void isEmptyTest(String s){
+    public void test_isEmpty(String s, boolean esperado){
         this.miLista = new SingleLinkedListImpl<>(s);
-        assertEquals(false, this.miLista.isEmpty());
+        assertEquals(esperado, this.miLista.isEmpty());
     }
+
 
 
 
