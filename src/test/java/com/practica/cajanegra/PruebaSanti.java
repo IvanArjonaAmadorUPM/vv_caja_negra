@@ -126,10 +126,9 @@ public class PruebaSanti {
 
 
 
-    // test ejemplo Iván
 
     // tests Iván
-    @DisplayName("testAddAtPosValida")
+    @DisplayName("testAddAtPos-Valida")
     @ParameterizedTest(name = "{index} => S={0}, P={1}, Esperado={2}")
     @CsvSource(value = {
             //A
@@ -192,7 +191,7 @@ public class PruebaSanti {
             "[:4:",
             "[:5:",
             "[:6",
-            //@
+            //0
             "A:0:",
             "B:0:",
             "M:0:",
@@ -211,6 +210,95 @@ public class PruebaSanti {
     }
 
 
+        @DisplayName("testAddNTimes-Valida")
+        @ParameterizedTest(name = "{index} => S={0}, N={1}, Esperado={2}")
+        @CsvSource(value = {
+                //A
+                "A:0:[A, B, C, D]",
+                "A:1:[A, B, C, D, A]",
+                "A:2:[A, B, C, D, A, A]",
+                "A:3:[A, B, C, D, A, A, A]",
+                "A:4:[A, B, C, D, A, A, A, A]",
+                "A:10:[A, B, C, D, A, A, A, A, A, A, A, A, A, A]",
+                //B
+                "B:0:[A, B, C, D]",
+                "B:1:[A, B, C, D, B]",
+                "B:2:[A, B, C, D, B, B]",
+                "B:3:[A, B, C, D, B, B, B]",
+                "B:4:[A, B, C, D, B, B, B, B]",
+                "B:10:[A, B, C, D, B, B, B, B, B, B, B, B, B, B]",
+                //M
+                "M:0:[A, B, C, D]",
+                "M:1:[A, B, C, D, M]",
+                "M:2:[A, B, C, D, M, M]",
+                "M:3:[A, B, C, D, M, M, M]",
+                "M:4:[A, B, C, D, M, M, M, M]",
+                "M:10:[A, B, C, D, M, M, M, M, M, M, M, M, M, M]",
+                //Y
+                "Y:0:[A, B, C, D]",
+                "Y:1:[A, B, C, D, Y]",
+                "Y:2:[A, B, C, D, Y, Y]",
+                "Y:3:[A, B, C, D, Y, Y, Y]",
+                "Y:4:[A, B, C, D, Y, Y, Y, Y]",
+                "Y:10:[A, B, C, D, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y]",
+                //Z
+                "Z:0:[A, B, C, D]",
+                "Z:1:[A, B, C, D, Z]",
+                "Z:2:[A, B, C, D, Z, Z]",
+                "Z:3:[A, B, C, D, Z, Z, Z]",
+                "Z:4:[A, B, C, D, Z, Z, Z, Z]",
+                "Z:10:[A, B, C, D, Z, Z, Z, Z, Z, Z, Z, Z, Z, Z]",
+        },
+                delimiter = ':')
+        public void test_addNTimesValido(String letra, int veces, String esperado){
+            this.miLista = new SingleLinkedListImpl<>("A","B","C","D");
+
+            this.miLista.addNTimes(letra,veces);
+            assertEquals(esperado, this.miLista.toString());
+        }
+
+
+    @DisplayName("testAddNTimesNoValida")
+    @ParameterizedTest(name = "{index} => S={0}, N={1}, Esperado={2}")
+    @CsvSource(value = {
+            //@
+            "@:0:",
+            "@:1:",
+            "@:2:",
+            "@:3:",
+            "@:4:",
+            "@:10",
+            //[
+            "[:0:",
+            "[:1:",
+            "[:2:",
+            "[:3:",
+            "[:4:",
+            "[:10",
+            //-1
+            "A:-1:",
+            "B:-1:",
+            "M:-1:",
+            "Y:-1:",
+            "Z:-1:",
+            "@:-1",
+            "[:-1"
+
+    },
+            delimiter = ':')
+    void test_addNTimesNoValido(String letra, int veces) {
+        this.miLista = new SingleLinkedListImpl<>("A","B","C","D");
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.addNTimes(letra,veces);
+        });
+    }
+
+
+    }
+
+
+
+
 
     //
 
@@ -218,4 +306,4 @@ public class PruebaSanti {
 
 
 
-}
+
