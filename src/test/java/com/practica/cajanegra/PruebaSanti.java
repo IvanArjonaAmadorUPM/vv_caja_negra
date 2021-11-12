@@ -1,5 +1,7 @@
 package com.practica.cajanegra;
 
+import com.cajanegra.AbstractSingleLinkedListImpl;
+import com.cajanegra.EmptyCollectionException;
 import com.cajanegra.SingleLinkedListImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -124,32 +126,146 @@ public class PruebaSanti {
             this.miLista.indexOf(letra);
         });
     }
-
-
-    //test isEmpty
-    @DisplayName("Debe comprobar que si esta vacio")
-    @ParameterizedTest(name = "{index} => vacio={0}")
-    @EmptySource
-    @NullSource
-    @ValueSource(strings = {""})
-    public void test_isEmpty1(String s) {
-        this.miLista = new SingleLinkedListImpl<>(s);
-        assertEquals(true, this.miLista.isEmpty());
-    }
-
-    @DisplayName("Debe comprobar que no esta vacio")
-    @ParameterizedTest(name = "{index} => Lista={0}, Esperado={1}")
+    //tests Igor
+    @DisplayName("Test isEmpty")
+    @ParameterizedTest(name = "{index} => Entrada={0}, Lista={1}, pos={2} Esperado={3}")
     @CsvSource(value = {
-            "A:false",
-            "[A,B]:false",
+            "::1:true",
+            ":A:1:false",
+            "A:B:2:false",
                         }, delimiter = ':')
 
-    public void test_isEmpty(String s, boolean esperado){
-        this.miLista = new SingleLinkedListImpl<>(s);
-        assertEquals(esperado, this.miLista.isEmpty());
+    public void test_isEmpty(String entrada, String s, int pos, boolean esperado){
+        if (entrada == null){
+            if(s == null){
+                this.miLista = new SingleLinkedListImpl<>();
+                assertEquals(esperado, this.miLista.isEmpty());
+            }
+            else {
+                this.miLista = new SingleLinkedListImpl<>(s);
+                this.miLista.addAtPos(s, pos);
+                assertEquals(esperado, this.miLista.isEmpty());
+            }
+        }
+        else{
+            this.miLista = new SingleLinkedListImpl<>(s);
+            this.miLista.addAtPos(s, pos);
+            assertEquals(esperado, this.miLista.isEmpty());
+        }
     }
 
+    @DisplayName("Test removeLast")
+    @ParameterizedTest(name = "{index} =>entrada={0}, Lista={1}, pos={2} Esperado={3}")
+    @CsvSource(value = {
+            "::1:Excepcion",
+            ":A:1:A",
+            "A:B:2:B",
+    }, delimiter = ':')
+    public void test_removeLast(String entrada, String s,int pos, String esperado){
+        if(entrada == null) {
+            if(s == null) {
+                this.miLista = new SingleLinkedListImpl<>();
+                assertThrows(EmptyCollectionException.class, () -> {
+                    this.miLista.removeLast();
+                });
+            }
+            else{
+                this.miLista = new SingleLinkedListImpl<>();
+                this.miLista.addAtPos(s, pos);
+                try {
+                    assertEquals(esperado, this.miLista.removeLast());
+                } catch (EmptyCollectionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        else{
+            this.miLista = new SingleLinkedListImpl<>(entrada);
+            this.miLista.addAtPos(s, pos);
+            try {
+                assertEquals(esperado, this.miLista.removeLast());
+            } catch (EmptyCollectionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    @DisplayName("Test reverse")
+    @ParameterizedTest(name = "{index} => Entrada={0}, Lista={1}, pos={2}, Esperado={3}")
+    @CsvSource(value = {
+            "::1:[]",
+            ":A:1:[A]",
+            "A:B:2:[B, A]",
+    }, delimiter = ':')
+    public void test_reverse(String entrada, String s, int pos, String esperado){
+        if (null == entrada){
+            if (s == null){
+                this.miLista = new SingleLinkedListImpl<>();
+                assertEquals(esperado, this.miLista.reverse().toString());
+            }
+            else{
+                this.miLista = new SingleLinkedListImpl<>();
+                this.miLista.addAtPos(s, pos);
+                assertEquals(esperado, this.miLista.reverse().toString());
+            }
+        }
+        else {
+            this.miLista = new SingleLinkedListImpl<>(entrada);
+            this.miLista.addAtPos(s, pos);
+            assertEquals(esperado, this.miLista.reverse().toString());
+        }
+    }
 
+    @DisplayName("Test size")
+    @ParameterizedTest(name = "{index} => Entrada={0}, Lista={1}, pos={2}, Esperado={3}")
+    @CsvSource(value = {
+            "::1:0",
+            ":A:1:1",
+            "A:B:2:2",
+    }, delimiter = ':')
+    public void test_size(String entrada, String s, int pos, int esperado){
+        if (null == entrada){
+            if (s == null){
+                this.miLista = new SingleLinkedListImpl<>();
+                assertEquals(esperado, this.miLista.size());
+            }
+            else{
+                this.miLista = new SingleLinkedListImpl<>();
+                this.miLista.addAtPos(s, pos);
+                assertEquals(esperado, this.miLista.size());
+            }
+        }
+        else {
+            this.miLista = new SingleLinkedListImpl<>(entrada);
+            this.miLista.addAtPos(s, pos);
+            assertEquals(esperado, this.miLista.size());
+        }
+    }
+
+    @DisplayName("Test toString")
+    @ParameterizedTest(name = "{index} => Entrada={0}, Lista={1}, pos={2}, Esperado={3}")
+    @CsvSource(value = {
+            "::1:[]",
+            ":A:1:[A]",
+            "A:B:2:[A, B]",
+    }, delimiter = ':')
+    public void test_toString(String entrada, String s, int pos, String esperado){
+        if (null == entrada){
+            if (s == null){
+                this.miLista = new SingleLinkedListImpl<>();
+                assertEquals(esperado, this.miLista.toString());
+            }
+            else{
+                this.miLista = new SingleLinkedListImpl<>();
+                this.miLista.addAtPos(s, pos);
+                assertEquals(esperado, this.miLista.toString());
+            }
+        }
+        else {
+            this.miLista = new SingleLinkedListImpl<>(entrada);
+            this.miLista.addAtPos(s, pos);
+            assertEquals(esperado, this.miLista.toString());
+        }
+    }
 
 
 
