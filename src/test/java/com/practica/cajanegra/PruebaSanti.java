@@ -16,12 +16,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 public class PruebaSanti {
     
     
     public static void main(String[] args){
         System.out.println("pruebas de Santiago, igor y Jaime funciona?");
-
 
 	}
 
@@ -40,7 +40,7 @@ public class PruebaSanti {
     @ValueSource(strings= {"A", "B", "M", "Y", "Z"})
 	public void test_addFirst(String s) {
 	    this.miLista.addFirst(s);
-    		assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
+    	assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
     }    
 
     //No pasa la prueba porque no funciona y no añade la letra en el first entonces no lanza la excepción
@@ -49,7 +49,7 @@ public class PruebaSanti {
     @ValueSource(strings= {"@","["})
 	public void test_addFirstNoValidos(String s) {
         assertThrows(IllegalArgumentException.class, () -> {
-            this.miLista.addFirst(s);;
+            this.miLista.addFirst(s);
         });
     }
 
@@ -62,7 +62,7 @@ public class PruebaSanti {
         assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
     } 
 
-    //No pasa la prueba porque no salta la excepción, añade la letra al final 
+    //No pasa la prueba porque no salta la excepción, añade la letra al final
     @DisplayName("testAddLast-NoValida")
     @ParameterizedTest(name="Add Last {0} in list")
     @ValueSource(strings= {"@","["})
@@ -93,9 +93,7 @@ public class PruebaSanti {
     @ParameterizedTest(name = "Add Last {0} in list")
     @ValueSource(strings= {"1","2"})    
     public void test_getAtPosNoValidos(int pos){
-        //this.miLista = new SingleLinkedListImpl<String>("@","]");
-        this.miLista.addLast("@");
-        this.miLista.addLast("]");
+        this.miLista = new SingleLinkedListImpl<String>("@","]");
         assertThrows(IllegalArgumentException.class, () -> {
             this.miLista.getAtPos(pos);
         });
@@ -117,12 +115,24 @@ public class PruebaSanti {
         assertEquals(posicion, this.miLista.indexOf(letra));
     }
 
-    //TERMINAR No pasa la prueba porque el codigo está mal y no lanza la prueba al añadir valores fuera del rango de la lista
-    @DisplayName("testIndexOf-NoValida")
-    @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
+    //No pasa la prueba porque el codigo está mal y permite que existan listas con valores fuera del rango por lo que no salta la excepcion
+    @DisplayName("testIndexOf-NoValidaRango")
+    @ParameterizedTest(name = "Add Last {0} in list")
     @ValueSource(strings= {"@","["})    
-    public void test_indexOfNoValidos(String letra){
+    public void test_indexOfNoValidoRango(String letra){
+        this.miLista = new SingleLinkedListImpl<String>("@","[");
         assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.indexOf(letra);
+        });
+    }
+
+    //Pasa la prueba porque salta la excepción de que el elemento buscado no está en la lista.
+    @DisplayName("testIndexOf-NoValidaArgumento")
+    @ParameterizedTest(name = "Add Last {0} in list")
+    @ValueSource(strings= {"S"})    
+    public void test_indexOfNoValidoArgumento(String letra){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
+        assertThrows(java.util.NoSuchElementException.class, () -> {
             this.miLista.indexOf(letra);
         });
     }
