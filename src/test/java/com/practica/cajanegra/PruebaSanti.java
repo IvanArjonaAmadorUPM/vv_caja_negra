@@ -50,10 +50,6 @@ public class PruebaSanti {
 
     @Test       
     public void test_addLast(String s){
-
-    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})      
-    public void addLast(String s){  
-
         this.miLista.addLast(s);
         assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
     }        
@@ -74,24 +70,8 @@ public class PruebaSanti {
     }
 
 
-    //removelast
-    @DisplayName("test removeLast")
-    //@ParameterizedTest(name = "remove Last {0} in list")
-    //@ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
 
-    @Test
-    public void test_removeLast(String s) throws EmptyCollectionException {
-        this.miLista = new SingleLinkedListImpl<String>("A","B","C","C","D","A");
-        /*this.miLista.removeLast(s);
-        assertEquals( "[A, B, C, C, D, A", -s-"]",this.miLista.toString());*/
-        this.miLista.removeLast("A");
-        assertEquals("[A, B, C, C, D]", this.miLista.toString());
-        this.miLista.removeLast("B");
-        assertEquals("[A, C, C, D, A]", this.miLista.toString());
-        this.miLista.removeLast("M");
-        assertEquals("[A, B, C, C, D, A]", this.miLista.toString());
-    }
-
+    //indexOf
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
             "A:1",
@@ -128,8 +108,42 @@ public class PruebaSanti {
           Integer.valueOf(str);
         });
     }
-    
-    
+
+
+
+    //removeLast
+    @ParameterizedTest(name = "{index} => letra={0}, esperado={1}")
+    @CsvSource(value = {
+            "@:[A, B, B, A, Y, M, Y, Z]",
+            "A:[A, B, B, Y, M, Y, Z]",
+            "B:[A, B, A, Y, M, Y, Z]",
+            "M:[A, B, B, A, Y, Y, Z]",
+            "Y:[A, B, B, A, Y, M, Z]",
+            "Z:[A, B, B, A, Y, M, Y]"
+    },
+            delimiter = ':')
+
+    public void test_removeLast(String letra, String esperado) throws EmptyCollectionException {
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "B","A", "Y", "M", "Y", "Z");
+        this.miLista.removeLast(letra);
+        assertEquals(esperado, this.miLista.toString());
+    }
+
+    //isSublist
+    @ParameterizedTest(name = "{index} => sublist=[0], posicion={1}")
+    @CsvSource(value = {
+            "[B, M, Y]:2",
+            "[A, M, Y]:-1",
+            "[]:0",
+            "[A, B][B, C]: -1",
+            "B:-1",
+            "[@, @]:-1"
+    },
+            delimiter= ':')
+    public void test_isSubList(String sublist, int posicion){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B","M", "Y", "Z");
+        assertEquals(posicion, this.miLista.isSubList(sublist));
+    }
 
 
     @DisplayName("Debe comprobar si esta vacio")
