@@ -2,15 +2,14 @@ package com.practica.cajanegra;
 
 import com.cajanegra.EmptyCollectionException;
 import com.cajanegra.SingleLinkedListImpl;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.runner.notification.RunListener.ThreadSafe;
-
 import org.junit.jupiter.params.ParameterizedTest;
-
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.Assert.assertThrows;
@@ -70,17 +69,20 @@ public class PruebaSanti {
     }
 
 
+<<<<<<< HEAD
 
     //indexOf
+=======
+>>>>>>> 2c8ba601dc62a22684bb3886d1005f0b17239660
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
-            "A:1",
-            "B:2",
-            "M:3",
-            "Y:4",
-            "Z:5"
-    },
-            delimiter = ':')
+                "A:1",
+                "B:2",
+                "M:3",
+                "Y:4",
+                "Z:5"
+        },
+                delimiter = ':')
     public void test_indexOf(String letra, int posicion){
         this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
         assertEquals(posicion, this.miLista.indexOf(letra));
@@ -108,6 +110,7 @@ public class PruebaSanti {
           Integer.valueOf(str);
         });
     }
+<<<<<<< HEAD
 
 
 
@@ -153,20 +156,37 @@ public class PruebaSanti {
     @Test
     public void isEmptyTest(){
         this.miLista = new SingleLinkedListImpl<>();
+=======
+    //test isEmpty
+    @DisplayName("Debe comprobar que si esta vacio")
+    @ParameterizedTest(name = "{index} => vacio={0}")
+    @EmptySource
+    @NullSource
+    @ValueSource(strings = {""})
+    public void test_isEmpty1(String s) {
+        this.miLista = new SingleLinkedListImpl<>(s);
+>>>>>>> 2c8ba601dc62a22684bb3886d1005f0b17239660
         assertEquals(true, this.miLista.isEmpty());
     }
 
-    @Test
-    public void isEmptyTest(String s){
+    @DisplayName("Debe comprobar que no esta vacio")
+    @ParameterizedTest(name = "{index} => Lista={0}, Esperado={1}")
+    @CsvSource(value = {
+            "A:false",
+            "[A,B]:false",
+                        }, delimiter = ':')
+
+    public void test_isEmpty(String s, boolean esperado){
         this.miLista = new SingleLinkedListImpl<>(s);
-        assertEquals(false, this.miLista.isEmpty());
+        assertEquals(esperado, this.miLista.isEmpty());
     }
+
 
 
 
 
     // tests Iván
-    @DisplayName("testAddAtPos")
+    @DisplayName("testAddAtPos-Valida")
     @ParameterizedTest(name = "{index} => S={0}, P={1}, Esperado={2}")
     @CsvSource(value = {
             //A
@@ -211,10 +231,137 @@ public class PruebaSanti {
         this.miLista.addAtPos(letra,posicion);
         assertEquals(esperado, this.miLista.toString());
     }
-        //
+
+    @DisplayName("testAddAtPosNoValida")
+    @ParameterizedTest(name = "{index} => S={0}, P={1}, Esperado={2}")
+    @CsvSource(value = {
+            //@
+            "@:1:",
+            "@:2:",
+            "@:3:",
+            "@:4:",
+            "@:5:",
+            "@:6",
+            //[
+            "[:1:",
+            "[:2:",
+            "[:3:",
+            "[:4:",
+            "[:5:",
+            "[:6",
+            //0
+            "A:0:",
+            "B:0:",
+            "M:0:",
+            "Y:0:",
+            "Z:0:",
+            "@:0",
+            "[:0"
+
+            },
+                delimiter = ':')
+    void test_addAtPosNoValido(String letra, int posicion) {
+        this.miLista = new SingleLinkedListImpl<>("A","B","C","D","E");
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.addAtPos(letra,posicion);
+        });
+    }
+
+
+        @DisplayName("testAddNTimes-Valida")
+        @ParameterizedTest(name = "{index} => S={0}, N={1}, Esperado={2}")
+        @CsvSource(value = {
+                //A
+                "A:0:[A, B, C, D]",
+                "A:1:[A, B, C, D, A]",
+                "A:2:[A, B, C, D, A, A]",
+                "A:3:[A, B, C, D, A, A, A]",
+                "A:4:[A, B, C, D, A, A, A, A]",
+                "A:10:[A, B, C, D, A, A, A, A, A, A, A, A, A, A]",
+                //B
+                "B:0:[A, B, C, D]",
+                "B:1:[A, B, C, D, B]",
+                "B:2:[A, B, C, D, B, B]",
+                "B:3:[A, B, C, D, B, B, B]",
+                "B:4:[A, B, C, D, B, B, B, B]",
+                "B:10:[A, B, C, D, B, B, B, B, B, B, B, B, B, B]",
+                //M
+                "M:0:[A, B, C, D]",
+                "M:1:[A, B, C, D, M]",
+                "M:2:[A, B, C, D, M, M]",
+                "M:3:[A, B, C, D, M, M, M]",
+                "M:4:[A, B, C, D, M, M, M, M]",
+                "M:10:[A, B, C, D, M, M, M, M, M, M, M, M, M, M]",
+                //Y
+                "Y:0:[A, B, C, D]",
+                "Y:1:[A, B, C, D, Y]",
+                "Y:2:[A, B, C, D, Y, Y]",
+                "Y:3:[A, B, C, D, Y, Y, Y]",
+                "Y:4:[A, B, C, D, Y, Y, Y, Y]",
+                "Y:10:[A, B, C, D, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y]",
+                //Z
+                "Z:0:[A, B, C, D]",
+                "Z:1:[A, B, C, D, Z]",
+                "Z:2:[A, B, C, D, Z, Z]",
+                "Z:3:[A, B, C, D, Z, Z, Z]",
+                "Z:4:[A, B, C, D, Z, Z, Z, Z]",
+                "Z:10:[A, B, C, D, Z, Z, Z, Z, Z, Z, Z, Z, Z, Z]",
+        },
+                delimiter = ':')
+        public void test_addNTimesValido(String letra, int veces, String esperado){
+            this.miLista = new SingleLinkedListImpl<>("A","B","C","D");
+
+            this.miLista.addNTimes(letra,veces);
+            assertEquals(esperado, this.miLista.toString());
+        }
+
+
+    @DisplayName("testAddNTimesNoValida")
+    @ParameterizedTest(name = "{index} => S={0}, N={1}, Esperado={2}")
+    @CsvSource(value = {
+            //@
+            "@:0:",
+            "@:1:",
+            "@:2:",
+            "@:3:",
+            "@:4:",
+            "@:10",
+            //[
+            "[:0:",
+            "[:1:",
+            "[:2:",
+            "[:3:",
+            "[:4:",
+            "[:10",
+            //-1
+            "A:-1:",
+            "B:-1:",
+            "M:-1:",
+            "Y:-1:",
+            "Z:-1:",
+            "@:-1",
+            "[:-1"
+
+    },
+            delimiter = ':')
+    void test_addNTimesNoValido(String letra, int veces) {
+        this.miLista = new SingleLinkedListImpl<>("A","B","C","D");
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.addNTimes(letra,veces);
+        });
+    }
+
+
+    }
 
 
 
 
 
-}
+    //
+
+
+
+
+
+
