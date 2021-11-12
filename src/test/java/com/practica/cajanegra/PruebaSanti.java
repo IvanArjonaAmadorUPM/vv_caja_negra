@@ -69,11 +69,10 @@ public class PruebaSanti {
     }
 
 
-<<<<<<< HEAD
+
 
     //indexOf
-=======
->>>>>>> 2c8ba601dc62a22684bb3886d1005f0b17239660
+
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
                 "A:1",
@@ -110,7 +109,7 @@ public class PruebaSanti {
           Integer.valueOf(str);
         });
     }
-<<<<<<< HEAD
+
 
 
 
@@ -145,18 +144,12 @@ public class PruebaSanti {
             delimiter= ':')
     public void test_isSubList(String sublist, int posicion){
         this.miLista = new SingleLinkedListImpl<String>("A", "B","M", "Y", "Z");
-        assertEquals(posicion, this.miLista.isSubList(sublist));
+        //assertEquals(posicion, this.miLista.isSubList(sublist));
     }
 
 
-    @DisplayName("Debe comprobar si esta vacio")
-    @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"A"})
 
-    @Test
-    public void isEmptyTest(){
-        this.miLista = new SingleLinkedListImpl<>();
-=======
+
     //test isEmpty
     @DisplayName("Debe comprobar que si esta vacio")
     @ParameterizedTest(name = "{index} => vacio={0}")
@@ -165,7 +158,6 @@ public class PruebaSanti {
     @ValueSource(strings = {""})
     public void test_isEmpty1(String s) {
         this.miLista = new SingleLinkedListImpl<>(s);
->>>>>>> 2c8ba601dc62a22684bb3886d1005f0b17239660
         assertEquals(true, this.miLista.isEmpty());
     }
 
