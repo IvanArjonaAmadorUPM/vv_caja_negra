@@ -1,6 +1,8 @@
 package com.practica.cajanegra;
 
+
 import com.cajanegra.AbstractSingleLinkedListImpl;
+
 import com.cajanegra.EmptyCollectionException;
 import com.cajanegra.SingleLinkedListImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,6 +45,9 @@ public class PruebaSanti {
     	assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
     }    
 
+
+
+
     //No pasa la prueba porque no funciona y no añade la letra en el first entonces no lanza la excepción
     @DisplayName("testAddFirst-NoValida")
     @ParameterizedTest(name="Add First {0} in list")
@@ -53,24 +58,8 @@ public class PruebaSanti {
         });
     }
 
-    //addLast pasa la prueba y añade correctamente
-    @DisplayName("testAddLast-Valida")
-    @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"A", "B", "M", "Y", "Z"})      
-    public void addLast(String s){  
-        this.miLista.addLast(s);
-        assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
-    } 
 
-    //No pasa la prueba porque no salta la excepción, añade la letra al final
-    @DisplayName("testAddLast-NoValida")
-    @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"@","["})
-    public void test_addLastNoValidos(String s) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            this.miLista.addLast(s);;
-        });
-    }   
+
 
     //getAtPos pasa la prueba y consigue bien la posición
     @DisplayName("testGetAtPos-Valida")
@@ -101,8 +90,15 @@ public class PruebaSanti {
         });
     }
 
+
+
+
+    //indexOf
+
+
     //Pasa la prueba y devuelve correctamente el índice
     @DisplayName("testIndexOf-Valida")
+
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
                 "A:1",
@@ -131,16 +127,100 @@ public class PruebaSanti {
     //Pasa la prueba porque salta la excepción de que el elemento buscado no está en la lista.
     @DisplayName("testIndexOf-NoValidaArgumento")
     @ParameterizedTest(name = "Add Last {0} in list")
-    @ValueSource(strings= {"S"})    
+    @ValueSource(strings= {"S"})
     public void test_indexOfNoValidoArgumento(String letra){
         this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
         assertThrows(java.util.NoSuchElementException.class, () -> {
             this.miLista.indexOf(letra);
         });
     }
+
+
+
+
+//tests Jaime
+    //addLast pasa la prueba y añade correctamente
+    @DisplayName("testAddLast-Valida")
+    @ParameterizedTest(name="Add Last {0} in list")
+    @ValueSource(strings= {"A", "B", "M", "Y", "Z"})
+    public void addLast(String s){
+
+        this.miLista.addLast(s);
+        assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
+    }
+
+        //No pasa la prueba porque no salta la excepción, añade la letra al final
+        @DisplayName("testAddLast-NoValida")
+        @ParameterizedTest(name="Add Last {0} in list")
+        @ValueSource(strings= {"@","["})
+        public void test_addLastNoValidos(String s) {
+            assertThrows(IllegalArgumentException.class, () -> {
+                this.miLista.addLast(s);;
+            });
+        }
+
+
+        //removeLast
+    @ParameterizedTest(name = "{index} => letra={0}, esperado={1}")
+    @CsvSource(value = {
+            "A:[A, B, B, Y, M, Y, Z]",
+            "B:[A, B, A, Y, M, Y, Z]",
+            "M:[A, B, B, A, Y, Y, Z]",
+            "Y:[A, B, B, A, Y, M, Z]",
+            "Z:[A, B, B, A, Y, M, Y]"
+    },
+            delimiter = ':')
+
+    public void test_removeLast(String letra, String esperado) throws EmptyCollectionException {
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "B","A", "Y", "M", "Y", "Z");
+        this.miLista.removeLast(letra);
+        assertEquals(esperado, this.miLista.toString());
+    }
+    @ParameterizedTest(name = "{index} => letra={0}, esperado={1}")
+    @CsvSource(value = {
+            "@:",
+            "[:"
+    },
+            delimiter = ':')
+
+    public void test_removeLastNoValido(String letra, String esperado) throws EmptyCollectionException {
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "B","A", "Y", "M", "Y", "Z");
+        assertThrows(IllegalArgumentException.class, () -> {
+                    this.miLista.removeLast(letra);
+            });
+    }
+
+
+
+
+    //isSublist
+    @ParameterizedTest(name = "{index} => sublist=[0], posicion={1}")
+    @CsvSource(value = {
+            "[B, M, Y]:2",
+            "[A, M, Y]:-1",
+            "[]:0",
+            "[A, B][B, C]: -1",
+            "B:-1",
+            "[@, @]:-1"
+    },
+            delimiter= ':')
+    public void test_isSubList(String sublist, int posicion){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B","M", "Y", "Z");
+        //assertEquals(posicion, this.miLista.isSubList(sublist));
+    }
+
+
+
+
+
+
+
+
+
     //tests Igor
     @DisplayName("Test isEmpty")
     @ParameterizedTest(name = "{index} => Entrada={0}, Lista={1}, pos={2} Esperado={3}")
+
     @CsvSource(value = {
             "::1:true",
             ":A:1:false",
