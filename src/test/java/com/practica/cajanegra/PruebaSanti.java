@@ -59,18 +59,7 @@ public class PruebaSanti {
     }
 
 
-<<<<<<< HEAD
-=======
-    //No pasa la prueba porque no salta la excepción, añade la letra al final
-    @DisplayName("testAddLast-NoValida")
-    @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"@","["})
-    public void test_addLastNoValidos(String s) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            this.miLista.addLast(s);;
-        });
-    }   
->>>>>>> 987b25baefdc4d1fb0f1316b160dfbe577e4c7a7
+
 
     //getAtPos pasa la prueba y consigue bien la posición
     @DisplayName("testGetAtPos-Valida")
@@ -133,7 +122,18 @@ public class PruebaSanti {
         });
     }
 
-<<<<<<< HEAD
+    //Pasa la prueba porque salta la excepción de que el elemento buscado no está en la lista.
+    @DisplayName("testIndexOf-NoValidaArgumento")
+    @ParameterizedTest(name = "Add Last {0} in list")
+    @ValueSource(strings= {"S"})
+    public void test_indexOfNoValidoArgumento(String letra){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
+        assertThrows(java.util.NoSuchElementException.class, () -> {
+            this.miLista.indexOf(letra);
+        });
+    }
+
+
 
 
 //tests Jaime
@@ -210,32 +210,11 @@ public class PruebaSanti {
 
 
 
-   /* //test isEmpty
-    @DisplayName("Debe comprobar que si esta vacio")
-    @ParameterizedTest(name = "{index} => vacio={0}")
-    @EmptySource
-    @NullSource
-    @ValueSource(strings = {""})
-    public void test_isEmpty1(String s) {
-        this.miLista = new SingleLinkedListImpl<>(s);
-        assertEquals(true, this.miLista.isEmpty());
-    }
 
-    @DisplayName("Debe comprobar que no esta vacio")
-    @ParameterizedTest(name = "{index} => Lista={0}, Esperado={1}")*/
 
-=======
-    //Pasa la prueba porque salta la excepción de que el elemento buscado no está en la lista.
-    @DisplayName("testIndexOf-NoValidaArgumento")
-    @ParameterizedTest(name = "Add Last {0} in list")
-    @ValueSource(strings= {"S"})    
-    public void test_indexOfNoValidoArgumento(String letra){
-        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
-        assertThrows(java.util.NoSuchElementException.class, () -> {
-            this.miLista.indexOf(letra);
-        });
-    }
->>>>>>> 987b25baefdc4d1fb0f1316b160dfbe577e4c7a7
+
+
+
     //tests Igor
     @DisplayName("Test isEmpty")
     @ParameterizedTest(name = "{index} => Entrada={0}, Lista={1}, pos={2} Esperado={3}")
