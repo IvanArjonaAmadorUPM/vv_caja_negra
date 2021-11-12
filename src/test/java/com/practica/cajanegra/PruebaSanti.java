@@ -26,29 +26,52 @@ public class PruebaSanti {
 
     private SingleLinkedListImpl<String> miLista;  
 
-    //addFirst
+
     @BeforeEach
 	public void setUp() {
 		this.miLista = new SingleLinkedListImpl<String>("A","B","C");
 	}
         
-    @DisplayName("testAddFirst")
+    //addFirst no pasa la prueba porque no añade la letra en el first
+    @DisplayName("testAddFirst-Valida")
     @ParameterizedTest(name="Add First {0} in list")
-    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})
+    @ValueSource(strings= {"A", "B", "M", "Y", "Z"})
 	public void test_addFirst(String s) {
 	    this.miLista.addFirst(s);
     		assertEquals("[" + s + ", A, B, C]", this.miLista.toString());
     }    
 
-    //addLast
+    //No pasa la prueba porque no funciona y no añade la letra en el first entonces no lanza la excepción
+    @DisplayName("testAddFirst-NoValida")
+    @ParameterizedTest(name="Add First {0} in list")
+    @ValueSource(strings= {"@","["})
+	public void test_addFirstNoValidos(String s) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.addFirst(s);;
+        });
+    }
+
+    //addLast pasa la prueba y añade correctamente
+    @DisplayName("testAddLast-Valida")
     @ParameterizedTest(name="Add Last {0} in list")
-    @ValueSource(strings= {"@", "A", "B", "M", "Y", "Z", "["})      
+    @ValueSource(strings= {"A", "B", "M", "Y", "Z"})      
     public void addLast(String s){  
         this.miLista.addLast(s);
         assertEquals("[A, B, C, " + s + "]", this.miLista.toString());
-    }        
+    } 
 
-    //getAtPos
+    //No pasa la prueba porque no salta la excepción, añade la letra al final 
+    @DisplayName("testAddLast-NoValida")
+    @ParameterizedTest(name="Add Last {0} in list")
+    @ValueSource(strings= {"@","["})
+    public void test_addLastNoValidos(String s) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.addLast(s);;
+        });
+    }   
+
+    //getAtPos pasa la prueba y consigue bien la posición
+    @DisplayName("testGetAtPos-Valida")
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
             "A:1",
@@ -63,7 +86,21 @@ public class PruebaSanti {
         assertEquals(letra, this.miLista.getAtPos(posicion));
     }
 
+    //No pasa la prueba porque el código está mal y no lanza excepción al añadir valores fuera del rango de la lista
+    @DisplayName("testGetAtPos-NoValida")
+    @ParameterizedTest(name = "Add Last {0} in list")
+    @ValueSource(strings= {"1","2"})    
+    public void test_getAtPosNoValidos(int pos){
+        //this.miLista = new SingleLinkedListImpl<String>("@","]");
+        this.miLista.addLast("@");
+        this.miLista.addLast("]");
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.getAtPos(pos);
+        });
+    }
 
+    //Pasa la prueba y devuelve correctamente el índice
+    @DisplayName("testIndexOf-Valida")
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
     @CsvSource(value = {
                 "A:1",
@@ -78,28 +115,17 @@ public class PruebaSanti {
         assertEquals(posicion, this.miLista.indexOf(letra));
     }
 
-    
+    //TERMINAR No pasa la prueba porque el codigo está mal y no lanza la prueba al añadir valores fuera del rango de la lista
+    @DisplayName("testIndexOf-NoValida")
     @ParameterizedTest(name = "{index} => Letra={0}, Posicion={1}")
-    @CsvSource(value = {
-            "A:1",
-            "B:2",
-            "M:3",
-            "Y:4",
-            "Z:5"
-    },
-            delimiter = ':')
-            
-    public void test_indexOfMalos(String letra, int posicion){
-        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
-        assertThrowsException();
-    }
-
-    void assertThrowsException() {
-        String str = null;
+    @ValueSource(strings= {"@","["})    
+    public void test_indexOfNoValidos(String letra){
         assertThrows(IllegalArgumentException.class, () -> {
-          Integer.valueOf(str);
+            this.miLista.indexOf(letra);
         });
     }
+
+
     //test isEmpty
     @DisplayName("Debe comprobar que si esta vacio")
     @ParameterizedTest(name = "{index} => vacio={0}")
