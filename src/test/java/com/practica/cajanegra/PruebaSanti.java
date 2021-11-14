@@ -67,22 +67,24 @@ public class PruebaSanti {
     @CsvSource(value = {
             "A:1",
             "B:2",
-            "M:3",
-            "Y:4",
-            "Z:5"
+            "C:3",
+            "D:4",
+            "M:5",
+            "Y:6",
+            "Z:7"
     },
             delimiter = ':')
     public void test_getAtPos(String letra, int posicion){
-        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "C","D","M", "Y", "Z");
         assertEquals(letra, this.miLista.getAtPos(posicion));
     }
 
-    //No pasa la prueba porque el código está mal y no lanza excepción al añadir valores fuera del rango de la lista
+    //Pasa la prueba porque el código está mal y lanza excepción al pedir valores fuera de la lista
     @DisplayName("testGetAtPos-NoValida")
     @ParameterizedTest(name = "Add Last {0} in list")
-    @ValueSource(strings= {"1","2"})    
+    @ValueSource(strings= {"0","6"})    
     public void test_getAtPosNoValidos(int pos){
-        this.miLista = new SingleLinkedListImpl<String>("@","]");
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
         assertThrows(IllegalArgumentException.class, () -> {
             this.miLista.getAtPos(pos);
         });
