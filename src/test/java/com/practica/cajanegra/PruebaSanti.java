@@ -192,22 +192,33 @@ public class PruebaSanti {
 
 
     //isSublist
-    @ParameterizedTest(name = "{index} => sublist=[0], posicion={1}")
+    @ParameterizedTest(name = "{index} => lista1=[0], posicion={1}")
     @CsvSource(value = {
             "[B, M, Y]:2",
             "[A, M, Y]:-1",
-            "[]:0",
+            "[]:0"
+    },
+            delimiter= ':')
+    public void test_isSubList(String lista1, int posicion){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
+        SingleLinkedListImpl lista= new SingleLinkedListImpl<String>(lista1);
+        assertEquals(posicion, this.miLista.isSubList(lista));
+    }
+
+    @ParameterizedTest(name = "{index} => lista1=[0], posicion={1}")
+    @CsvSource(value = {
             "[A, B][B, C]: -1",
             "B:-1",
             "[@, @]:-1"
     },
             delimiter= ':')
-    public void test_isSubList(String sublist, int posicion){
-        this.miLista = new SingleLinkedListImpl<String>("A", "B","M", "Y", "Z");
-        //assertEquals(posicion, this.miLista.isSubList(sublist));
+    public void test_isSubListNoValidos(String lista1, int posicion){
+        this.miLista = new SingleLinkedListImpl<String>("A", "B", "M", "Y", "Z");
+        SingleLinkedListImpl lista= new SingleLinkedListImpl<String>(lista1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.miLista.isSubList(lista);
+        });
     }
-
-
 
 
 
