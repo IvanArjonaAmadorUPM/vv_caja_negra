@@ -256,30 +256,31 @@ public class PruebaSanti {
             assertEquals(esperado, this.miLista.isEmpty());
         }
     }
-
-    @DisplayName("Test removeLast")
+    @DisplayName("Test removeLast Invalidos")
     @ParameterizedTest(name = "{index} =>entrada={0}, Lista={1}, pos={2} Esperado={3}")
     @CsvSource(value = {
-            "::1:Excepcion",
+            "::1:Excepcion"
+    }, delimiter = ':')
+    public void test_removeLastInvalido(String entrada, String s,int pos, String esperado){
+        this.miLista = new SingleLinkedListImpl<>();
+        assertThrows(EmptyCollectionException.class, () -> {
+            this.miLista.removeLast();
+        });
+    }
+    @DisplayName("Test removeLast Validos")
+    @ParameterizedTest(name = "{index} =>entrada={0}, Lista={1}, pos={2} Esperado={3}")
+    @CsvSource(value = {
             ":A:1:A",
             "A:B:2:B",
     }, delimiter = ':')
-    public void test_removeLast(String entrada, String s,int pos, String esperado){
+    public void test_removeLastValido(String entrada, String s,int pos, String esperado){
         if(entrada == null) {
-            if(s == null) {
-                this.miLista = new SingleLinkedListImpl<>();
-                assertThrows(EmptyCollectionException.class, () -> {
-                    this.miLista.removeLast();
-                });
-            }
-            else{
-                this.miLista = new SingleLinkedListImpl<>();
-                this.miLista.addAtPos(s, pos);
-                try {
-                    assertEquals(esperado, this.miLista.removeLast());
-                } catch (EmptyCollectionException e) {
-                    e.printStackTrace();
-                }
+            this.miLista = new SingleLinkedListImpl<>();
+            this.miLista.addAtPos(s, pos);
+            try {
+                assertEquals(esperado, this.miLista.removeLast());
+            } catch (EmptyCollectionException e) {
+                e.printStackTrace();
             }
         }
         else{
