@@ -72,24 +72,16 @@ public class removeTests {
             ":A:1:A",
             "A:B:2:B",
     }, delimiter = ':')
-    public void test_removeLastValido(String entrada, String s,int pos, String esperado){
+    public void test_removeLastValido(String entrada, String s,int pos, String esperado) throws EmptyCollectionException{
         if(entrada == null) {
             this.miLista = new SingleLinkedListImpl<>();
             this.miLista.addAtPos(s, pos);
-            try {
-                assertEquals(esperado, this.miLista.removeLast());
-            } catch (EmptyCollectionException e) {
-                e.printStackTrace();
-            }
+            assertEquals(esperado, this.miLista.removeLast());
         }
         else{
             this.miLista = new SingleLinkedListImpl<>(entrada);
             this.miLista.addAtPos(s, pos);
-            try {
-                assertEquals(esperado, this.miLista.removeLast());
-            } catch (EmptyCollectionException e) {
-                e.printStackTrace();
-            }
+            assertEquals(esperado, this.miLista.removeLast());
         }
     }
 
